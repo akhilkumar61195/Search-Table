@@ -1,0 +1,23 @@
+<div class="container">
+<div class="col-6  mb-3">
+<label class="mb-3 mt-3 pt-5">Filter</label>
+<input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off"  placeholder="Start searching for name or age">
+</div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th  *ngFor="let column of displayedColumns"> {{column}} <i (click)="onSortClick($event)" class="my-icon fa fa-chevron-up"></i> </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let hero of heroes | filter:searchText | paginate: { itemsPerPage: 5, currentPage: p }">
+    <td>{{hero.name}}</td>
+    <td>{{hero.age}}</td>
+    <td>{{hero.dob}}</td>
+  </tr>
+  </tbody>
+</table>
+<div class="pull-right">
+<pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+</div>
